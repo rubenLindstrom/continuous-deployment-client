@@ -13,7 +13,7 @@ export const BuildsProvider = props => {
 
   useEffect(() => {
     firebase.getBuilds().then(res => setBuilds(res));
-  });
+  }, []);
 
   return (
     <BuildsContext.Provider value={builds}>

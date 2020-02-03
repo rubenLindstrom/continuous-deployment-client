@@ -6,11 +6,10 @@ import { useBuilds } from "./util/hooks";
 import Nav from "./components/nav";
 
 const App = () => {
-  const builds = useBuilds();
+  // const builds = useBuilds();
+  // useEffect(() => console.log(builds), [builds]);
 
-  useEffect(() => {
-    console.log(builds);
-  }, [builds]);
+  const buids = [{ title, datetime, status, body }];
 
   return (
     <>

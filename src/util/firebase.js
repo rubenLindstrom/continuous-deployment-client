@@ -1,7 +1,7 @@
-import app from "firebase/app";
-import "firebase/database";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
-const firebaseConfig = {
+const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -14,17 +14,15 @@ const firebaseConfig = {
 
 class Firebase {
   constructor() {
-    this.app = app;
-    this.app.initializeApp(firebaseConfig);
-    this.db = this.app.database();
+    firebase.initializeApp(config);
+    this.db = firebase.firestore(firebase);
   }
 
-  getBuilds() {
-    return this.db
-      .ref("/builds")
-      .once("value")
-      .then(snapshot => snapshot.val());
-  }
+  getBuilds = () =>
+    this.db
+      .collection("builds")
+      .get()
+      .then(ss => ss.docs.map(doc => ({ ...doc.data(), id: doc.id })));
 }
 
 export default new Firebase();
