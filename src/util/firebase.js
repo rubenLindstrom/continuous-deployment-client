@@ -22,7 +22,13 @@ class Firebase {
     this.db
       .collection("builds")
       .get()
-      .then(ss => ss.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+      .then(ss =>
+        ss.docs.reduce((acc, curr) => {
+          acc[curr.id] = { ...curr.data() };
+          return acc;
+        }, {})
+      )
+      .then(console.log);
 }
 
 export default new Firebase();
