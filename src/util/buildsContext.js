@@ -4,7 +4,7 @@ import uuid from "react-uuid";
 
 const BuildsContext = React.createContext();
 
-const initialState = {
+const initialBuilds = {
   [uuid()]: {
     body: {
       closed_at: null,
@@ -62,14 +62,26 @@ const initialState = {
 };
 
 export const BuildsProvider = props => {
-  const [builds, setBuilds] = useState(initialState);
+  const [builds, setBuilds] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
-  //   firebase.getBuilds().then(res => setBuilds(res));
+  //   setTimeout(() => setLoading(false), 700);
   // }, []);
 
+  useEffect(() => {
+    firebase.getBuilds().then(res => {
+      console.log(res);
+      setBuilds(res);
+    });
+  }, []);
+
+  useEffect(() => {
+    setLoading(!Boolean(builds));
+  }, [builds]);
+
   return (
-    <BuildsContext.Provider value={builds}>
+    <BuildsContext.Provider value={{ builds, loading }}>
       {props.children}
     </BuildsContext.Provider>
   );

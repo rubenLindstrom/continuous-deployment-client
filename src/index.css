@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Roboto&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -52,12 +53,110 @@ table {
   border-spacing: 0;
 }
 
-nav .image-wrapper {
-  width: 250px;
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.5;
+}
+
+p,
+a {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.yellow-link {
+  color: #f1c40f;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.yellow-link:hover,
+.yellow-link .active {
+  color: #f39c12;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+
+.subtitle {
+  font-size: 2.25rem;
+}
+
+.subtitle::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 60px;
+  background-color: #555;
+  margin: 1rem auto;
+}
+
+.status-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: dimgray;
+}
+
+nav {
+  background-color: #f9f9f9;
+}
+
+nav ul {
+  padding: 0.5rem;
+  margin-left: 50px;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+nav ul a {
+  color: #333;
+}
+
+nav ul a.active, nav ul a:hover {
+  color: #f39c12;
 }
 
 .image-wrapper img {
   width: 100%;
   height: auto;
+}
+
+.container {
+  max-width: 1190px;
+  margin: auto;
+}
+
+.builds {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 /*# sourceMappingURL=index.css.map */

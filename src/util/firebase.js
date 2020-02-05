@@ -28,7 +28,7 @@ class Firebase {
           return acc;
         }, {})
       )
-      .then(console.log);
+      .catch(err => console.error(err));
 }
 
 export default new Firebase();
