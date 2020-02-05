@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-
-import { useBuilds } from "./util/hooks";
+import React from "react";
 
 // Components
 import Nav from "./components/nav";
+import Builds from "./components/builds";
 
 const App = () => {
-  const builds = useBuilds();
-  useEffect(() => console.log(builds), [builds]);
-
   return (
     <>
       <Nav />
       <h1></h1>
+      <Builds />
     </>
   );
 };
