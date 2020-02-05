@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useBuilds } from "./util/hooks";
 
 // Components
-import Nav from "./components/nav";
 
 const App = () => {
   const builds = useBuilds();
@@ -11,7 +10,6 @@ const App = () => {
 
   return (
     <>
-      <Nav />
       <h1></h1>
     </>
   );
