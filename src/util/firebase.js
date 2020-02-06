@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -18,16 +19,20 @@ class Firebase {
     this.db = firebase.firestore(firebase);
   }
 
+  subscribe = cb =>
+    this.db.collection("builds").onSnapshot(ss => cb(this.reduceSnapshot(ss)));
+
+  reduceSnapshot = ss =>
+    ss.docs.reduce((acc, curr) => {
+      acc[curr.id] = { ...curr.data() };
+      return acc;
+    }, {});
+
   getBuilds = () =>
     this.db
       .collection("builds")
       .get()
-      .then(ss =>
-        ss.docs.reduce((acc, curr) => {
-          acc[curr.id] = { ...curr.data() };
-          return acc;
-        }, {})
-      )
+      .then(this.reduceSnapshot)
       .catch(err => console.error(err));
 }
 

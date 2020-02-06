@@ -10,11 +10,17 @@ import Builds from "./pages/builds";
 import SingleBuild from "./pages/singleBuild";
 import NotFound from "./pages/notFound";
 
+// TODO: Add
+// Datumtid*
+// body
+// en länk till issue om den finns
+// länk till pull
+
 const App = () => {
   return (
     <>
       <Nav />
-      <div className="container">
+      <div className="container center">
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/builds" component={Builds} exact />

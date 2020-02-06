@@ -1,5 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const StyledCard = styled.div`
   width: 700px;
@@ -35,6 +38,7 @@ const StyledCard = styled.div`
         color: ${props => (props.status ? "#2ecc71" : "#e74c3c")};
         font-weight: bold;
         margin-bottom: 0.5rem;
+        text-align: left;
       }
 
       figure {
@@ -56,13 +60,8 @@ const StyledCard = styled.div`
 `;
 
 // TODO: Card does not need all this info. Slim down to essentials
-const card = ({
-  id,
-  body: { closed_at, merged_at, updated_at },
-  buildResult: { message, status },
-  pullrequest: { issue_url, node_id, number, title, url },
-  user: { avatar_url, login }
-}) => {
+const card = ({ timestamp, status, number, title, avatar_url, login }) => {
+  dayjs.extend(relativeTime);
   return (
     <StyledCard status={status}>
       <div className="outer-wrapper">
@@ -76,11 +75,31 @@ const card = ({
         <div className="title-wrapper">{title}</div>
       </div>
       <div className="outer-wrapper">
-        <div></div>
+        {/* <div>{dayjs(updated_at || closed_at || merged_at).fromNow()}</div> */}
         <div></div>
       </div>
     </StyledCard>
   );
+};
+
+// pullrequest: { issue_url, number, title, url },
+//   user: { avatar_url, login }
+
+const {
+  number: pNumber,
+  string: pString,
+  shape: pShape,
+  bool: pBool
+} = PropTypes;
+
+card.propTypes = {
+  body: pString.isRequired,
+  timestamp: pString.isRequired,
+  status: pBool.isRequired,
+  number: pNumber.isRequired,
+  title: pString.isRequired,
+  avatar_url: pString.isRequired,
+  login: pString.isRequired
 };
 
 export default card;

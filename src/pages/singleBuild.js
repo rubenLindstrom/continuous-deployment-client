@@ -1,19 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useBuild } from "../util/hooks";
 
+import Spinner from "../components/spinner";
+
 const SingleBuild = props => {
-  const { build, loading } = useBuild(props.match.params.id);
+  const { build } = useBuild(props.match.params.id);
 
-  useEffect(() => console.log(build), [build]);
+  if (!build) return <Spinner mt={8} />;
 
-  if (loading) return <p className="status-text">Loading...</p>;
-
-  return (
-    <div>
-      <h1 className="page-title">{build.pullrequest.title}</h1>
-    </div>
-  );
+  return <h1 className="page-title">{build.data.title}</h1>;
 };
 
 export default SingleBuild;

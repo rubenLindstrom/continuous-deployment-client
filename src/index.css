@@ -80,6 +80,10 @@ a {
   color: inherit;
 }
 
+.bigger {
+  font-size: 1.2rem;
+}
+
 .yellow-link {
   color: #f1c40f;
   -webkit-transition: color 0.2s ease;
@@ -116,7 +120,7 @@ a {
 }
 
 nav {
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
 }
 
 nav ul {
@@ -145,6 +149,10 @@ nav ul a.active, nav ul a:hover {
 .container {
   max-width: 1190px;
   margin: auto;
+}
+
+.center {
+  text-align: center;
 }
 
 .builds {
